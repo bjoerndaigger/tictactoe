@@ -6,8 +6,12 @@ function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID,
 
     if (currentShape == 'cross') { // if-Abfrage, die abwechselnd 'cross' und 'circle' in den Array gibt
         currentShape = 'circle';
+        document.getElementById('player-1').classList.remove('player-inactive'); // entfernt Transparenz von Player 1 und
+        document.getElementById('player-2').classList.add('player-inactive'); // fügt Transparenz zu Player 2 hinzu
     } else {
         currentShape = 'cross';
+        document.getElementById('player-1').classList.add('player-inactive'); // fügt Transparenz zu Player 1 hinzu und
+        document.getElementById('player-2').classList.remove('player-inactive'); // entfernt Transparenz von Player 2
     }
 
     fields[id] = currentShape; // pusht aktuelle Indexstelle (currentShape) mit 'cross' oder 'circle' in den Array
@@ -28,11 +32,13 @@ function draw() {  //entfernen von entsprechendem display-none im CSS beim click
     }
 }
 
-function checkForWin() {
-    let winner; 
+function checkForWin() { 
+    let winner; // Variable mit der ich überprüfe ob ein Wert vorhanden oder undefined ist
 
-    if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) { 
-        winner = fields[0];
+    if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {  
+        // erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
+        // außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
+        winner = fields[0]; // überprüft ob Wert an Index 0, 1 oder 2 vorhanden, ansonsten undefined
     }
 
     if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
