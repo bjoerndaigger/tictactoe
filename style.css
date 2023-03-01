@@ -1,4 +1,6 @@
 body {
+  height: 100vh;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,4 +76,11 @@ table tr td:last-child {
 
 .d-none {
   display: none;
+}
+
+.horizontal-line {
+  height: 10px;
+  width: 300px;
+  background-color: rgba(0,0,0,0.5);
+  position: relative;
 }
