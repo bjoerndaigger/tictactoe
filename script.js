@@ -37,38 +37,56 @@ function draw() {  //entfernen von entsprechendem display-none im CSS beim click
 function checkForWin() {
     let winner; // Variable mit der ich überprüfe ob ein Wert vorhanden oder undefined ist
 
+    // First row
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
         // erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
         // außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
         winner = fields[0]; // überprüft ob Wert an Index 0, 1 oder 2 vorhanden, ansonsten undefined
+        document.getElementById('line-1').style.transform = 'scaleX(1)'; // Animation von durchgezogener Linie bei Gewinn
     }
 
+    // Second Row
     if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
         winner = fields[3];
+        document.getElementById('line-2').style.transform = 'scaleX(1)';
     }
-
+    
+    // Third Row
     if (fields[6] == fields[7] && fields[7] == fields[8] && fields[7]) {
         winner = fields[6];
+        document.getElementById('line-3').style.transform = 'scaleX(1)';
     }
-
+    
+    // Vertical Left
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
+        document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1)';
     }
 
+    // Vertival Middle
     if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
         winner = fields[1];
+        document.getElementById('line-4').style.transform = 'rotate(90deg) scaleX(1)';
     }
 
+    // Vertical Right
     if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
         winner = fields[2];
+        document.getElementById('line-5').style.transform = 'rotate(90deg) scaleX(1)';
+        
     }
 
+    // Diagonal Left
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
+        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1)';
+     
     }
 
+    // Diagonal Right 
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[6]) {
         winner = fields[2];
+        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1)';
     }
 
     if (winner) {
