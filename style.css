@@ -83,8 +83,10 @@ table tr td:last-child {
   width: 350px;
   background-color: rgba(0,0,0,0.5);
   position: relative;
+  transform: scaleX(0.0);
+  transition: transform 225ms ease-in-out;
 }
 
 .make-vertical {
-  transform: rotate(90deg);
+  transform: rotate(90deg) scaleX(0.0);
 }
