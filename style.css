@@ -80,7 +80,11 @@ table tr td:last-child {
 
 .horizontal-line {
   height: 10px;
-  width: 300px;
+  width: 350px;
   background-color: rgba(0,0,0,0.5);
   position: relative;
+}
+
+.make-vertical {
+  transform: rotate(90deg);
 }
