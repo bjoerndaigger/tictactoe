@@ -60,27 +60,25 @@ function checkForWin() {
     // Vertical Left
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
-        document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1)';
+        document.getElementById('line-4').style.transform = 'rotate(90deg) scaleX(1)';
     }
 
-    // Vertival Middle
+    // Vertical Middle
     if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
         winner = fields[1];
-        document.getElementById('line-4').style.transform = 'rotate(90deg) scaleX(1)';
+        document.getElementById('line-5').style.transform = 'rotate(90deg) scaleX(1)';
     }
 
     // Vertical Right
     if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
         winner = fields[2];
-        document.getElementById('line-5').style.transform = 'rotate(90deg) scaleX(1)';
-        
+        document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1)';
     }
 
     // Diagonal Left
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
         document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1)';
-     
     }
 
     // Diagonal Right 
