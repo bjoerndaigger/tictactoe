@@ -1,10 +1,10 @@
 let fields = []; // Array, der die mit onclick übergebenen Werte speichert
-
+let gameOver = false;
 let currentShape = 'cross';  // Variable, die sagt, mit welchem Image gestartet werden soll
 
 function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID, welches Feld geklickt wurde
-    if (!fields[id]) { // Funktion wird wegen Negation Operator nur ausgeführt, wenn Bedingung undefined zurückgibt, also noch kein Wert vorhanden ist
-                       // so werden Doppelklicks verhindert.
+    if (!fields[id] && !gameOver) { // Funktion wird nur ausgeführt, wenn erste Bedingung undefined zurückgibt, also noch kein Wert vorhanden ist (verhindert Doppelklick) 
+        // && wenn zweite Bedingung gameOver true ist (Negation Operator), damit nach Gewinnen kein Weiterspielen möglich ist
         if (currentShape == 'cross') { // if-Abfrage, die abwechselnd 'cross' und 'circle' in den Array gibt
             currentShape = 'circle';
             document.getElementById('player-1').classList.remove('player-inactive'); // entfernt Transparenz von Player 1 und
@@ -50,13 +50,13 @@ function checkForWin() {
         winner = fields[3];
         document.getElementById('line-2').style.transform = 'scaleX(1)';
     }
-    
+
     // Third Row
     if (fields[6] == fields[7] && fields[7] == fields[8] && fields[7]) {
         winner = fields[6];
         document.getElementById('line-3').style.transform = 'scaleX(1)';
     }
-    
+
     // Vertical Left
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
@@ -78,16 +78,20 @@ function checkForWin() {
     // Diagonal Left
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
-        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1)';
+        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1.2)';
     }
 
     // Diagonal Right 
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[6]) {
         winner = fields[2];
-        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1)';
+        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1.2)';
     }
 
-    if (winner) {
+    if (winner) { // wird ausgeführt, wenn winner vorhanden
         console.log('GEWONNEN', winner);
+        gameOver = true; // stoppt die Funktion fillShape(id), so dass kein weiterspielen möglich ist
+        setTimeout(function () {
+            document.getElementById('game-over').classList.remove('d-none'); // rendern von Game Over-Grafik mit Zeitverzögerung von 1 Sekunde
+        }, 1000);
     }
 }
