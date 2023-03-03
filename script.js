@@ -25,11 +25,13 @@ function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID,
 function restart() {
     gameOver = false; // ausführen von fillShape(id) wieder möglich
     fields = []; // reset von fields
+    currentShape = 'cross';
+
     document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
     document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
 
-    for (let i = 1; i < 8; i++) { // geht von 1 bis 7 durch alle Linien und fügt Klasse d-none hinzu
-        document.getElementById('line-' + i).classList.add('d-none');
+    for (let i = 1; i < 8; i++) { // geht von 1 bis 7 durch alle Linien und macht Winlines wieder unsichtbar
+        document.getElementById('line-' + i).style.transform = 'scaleX(0)';
     }
 
     for (let i = 0; i < 9; i++) { // geht von 0 bis 8 durch alle Kästchen und fügt Klasse d-none zu cross und circle hinzu
@@ -53,10 +55,11 @@ function draw() {  //entfernen von entsprechendem display-none im CSS beim click
 function checkForWin() {
     let winner; // Variable mit der ich überprüfe ob ein Wert vorhanden oder undefined ist
 
+    // if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
+    // außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
+
     // First row
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
-        // erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
-        // außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
         winner = fields[0]; // überprüft ob Wert an Index 0, 1 oder 2 vorhanden, ansonsten undefined
         document.getElementById('line-1').style.transform = 'scaleX(1)'; // Animation von durchgezogener Linie bei Gewinn
     }
