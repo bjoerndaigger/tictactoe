@@ -12,6 +12,7 @@
 
 <body>
     <img id="game-over" class="game-over d-none" src="./img/game-over.png">
+    <button id="restart-btn" class="restart-btn d-none" onclick="restart()">Restart</button>
     <div class="player-panel">
         <div class="player-inactive" id="player-1">
             <img src="./img/circle.png">Player 1
@@ -20,15 +21,22 @@
             <img src="./img/cross.png">Player 2
         </div>
     </div>
-
-    <div id="line-1" class="horizontal-line" style="top: 140px"></div> <!-- First Row -->
-    <div id="line-2" class="horizontal-line" style="top: 270px"></div> <!-- Second Row -->
-    <div id="line-3" class="horizontal-line" style="top: 400px"></div> <!-- Third Row -->
-    <div id="line-4" class="horizontal-line make-vertical" style="top: 230px; right: 140px"></div> <!-- Vertical Left-->
-    <div id="line-5" class="horizontal-line make-vertical" style="top: 250px"></div> <!-- Vertical Middle -->
-    <div id="line-6" class="horizontal-line make-vertical" style="top: 240px; left: 140px"></div> <!-- Vertical Right-->
-    <div id="line-7" class="horizontal-line" style="top: 220px; transform: rotate(45deg) scaleX(0.0);"></div> <!-- Diagonal Left -->
-    <div id="line-8" class="horizontal-line" style="top: 210px; transform: rotate(-45deg) scaleX(0.0);"></div> <!-- Diagonal Right -->
+    <!-- First Row -->
+    <div id="line-1" class="horizontal-line" style="top: 140px"></div>
+    <!-- Second Row -->
+    <div id="line-2" class="horizontal-line" style="top: 270px"></div>
+    <!-- Third Row -->
+    <div id="line-3" class="horizontal-line" style="top: 400px"></div>
+    <!-- Vertical Left-->
+    <div id="line-4" class="horizontal-line make-vertical" style="top: 230px; right: 140px"></div>
+    <!-- Vertical Middle -->
+    <div id="line-5" class="horizontal-line make-vertical" style="top: 250px"></div>
+    <!-- Vertical Right-->
+    <div id="line-6" class="horizontal-line make-vertical" style="top: 240px; left: 140px"></div>
+    <!-- Diagonal Left -->
+    <div id="line-7" class="horizontal-line" style="top: 220px; transform: rotate(45deg) scaleX(0.0);"></div>
+    <!-- Diagonal Right -->
+    <div id="line-8" class="horizontal-line" style="top: 210px; transform: rotate(-45deg) scaleX(0.0);"></div>
 
     <table>
         <tr>

@@ -22,6 +22,22 @@ function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID,
     }
 }
 
+function restart() {
+    gameOver = false; // ausführen von fillShape(id) wieder möglich
+    fields = []; // reset von fields
+    document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
+    document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
+
+    for (let i = 1; i < 8; i++) { // geht von 1 bis 7 durch alle Linien und fügt Klasse d-none hinzu
+        document.getElementById('line-' + i).classList.add('d-none');
+    }
+
+    for (let i = 0; i < 9; i++) { // geht von 0 bis 8 durch alle Kästchen und fügt Klasse d-none zu cross und circle hinzu
+        document.getElementById('cross-' + i).classList.add('d-none');
+        document.getElementById('circle-' + i).classList.add('d-none');
+    }
+}
+
 function draw() {  //entfernen von entsprechendem display-none im CSS beim click
     for (let i = 0; i < fields.length; i++) {
         if (fields[i] == 'circle') {
@@ -92,6 +108,7 @@ function checkForWin() {
         gameOver = true; // stoppt die Funktion fillShape(id), so dass kein weiterspielen möglich ist
         setTimeout(function () {
             document.getElementById('game-over').classList.remove('d-none'); // rendern von Game Over-Grafik mit Zeitverzögerung von 1 Sekunde
+            document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
         }, 1000);
     }
 }
