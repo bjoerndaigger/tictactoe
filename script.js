@@ -2,6 +2,7 @@ let fields = []; // Array, der die mit onclick übergebenen Werte speichert
 let gameOver = false;
 let currentShape = 'cross';  // Variable, die sagt, mit welchem Image gestartet werden soll
 
+
 function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID, welches Feld geklickt wurde
     if (!fields[id] && !gameOver) { // Funktion wird nur ausgeführt, wenn erste Bedingung undefined zurückgibt, also noch kein Wert vorhanden ist (verhindert Doppelklick) 
         // && wenn zweite Bedingung gameOver true ist (Negation Operator), damit nach Gewinnen kein Weiterspielen möglich ist
@@ -22,6 +23,7 @@ function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID,
     }
 }
 
+
 function restart() {
     gameOver = false; // ausführen von fillShape(id) wieder möglich
     fields = []; // reset von fields
@@ -30,7 +32,7 @@ function restart() {
     document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
     document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
 
-    for (let i = 1; i < 8; i++) { // geht von 1 bis 7 durch alle Linien und macht Winlines wieder unsichtbar
+    for (let i = 1; i < 9; i++) { // geht von 1 bis 7 durch alle Linien und macht Winlines wieder unsichtbar
         document.getElementById('line-' + i).style.transform = 'scaleX(0)';
     }
 
@@ -39,6 +41,7 @@ function restart() {
         document.getElementById('circle-' + i).classList.add('d-none');
     }
 }
+
 
 function draw() {  //entfernen von entsprechendem display-none im CSS beim click
     for (let i = 0; i < fields.length; i++) {
@@ -51,6 +54,7 @@ function draw() {  //entfernen von entsprechendem display-none im CSS beim click
         }
     }
 }
+
 
 function checkForWin() {
     let winner; // Variable mit der ich überprüfe ob ein Wert vorhanden oder undefined ist
@@ -97,13 +101,13 @@ function checkForWin() {
     // Diagonal Left
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
-        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1.2)';
+        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1.3)';
     }
 
     // Diagonal Right 
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[6]) {
         winner = fields[2];
-        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1.2)';
+        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1.3)';
     }
 
     if (winner) { // wird ausgeführt, wenn winner vorhanden
@@ -114,4 +118,5 @@ function checkForWin() {
             document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
         }, 1000);
     }
+
 }
