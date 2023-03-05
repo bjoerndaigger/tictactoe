@@ -59,9 +59,15 @@ function draw() {  //entfernen von entsprechendem display-none im CSS beim click
 function checkForWin() {
     let winner; // Variable mit der ich überprüfe ob ein Wert vorhanden oder undefined ist
 
-    // if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
-    // außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
+    horizontalLines(winner);
+    verticalLines(winner);
+    diagonalLines(winner);
+}
 
+// if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
+// außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
+
+function horizontalLines(winner) {
     // First row
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
         winner = fields[0]; // überprüft ob Wert an Index 0, 1 oder 2 vorhanden, ansonsten undefined
@@ -79,7 +85,11 @@ function checkForWin() {
         winner = fields[6];
         document.getElementById('line-3').style.transform = 'scaleX(1)';
     }
+    showWinner(winner);
+}
 
+
+function verticalLines(winner) {
     // Vertical Left
     if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
         winner = fields[0];
@@ -97,26 +107,32 @@ function checkForWin() {
         winner = fields[2];
         document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1)';
     }
+    showWinner(winner);
+}
 
+
+function diagonalLines(winner) {
     // Diagonal Left
     if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
         winner = fields[0];
-        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1.3)';
+        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1.4)';
     }
 
     // Diagonal Right 
     if (fields[2] == fields[4] && fields[4] == fields[6] && fields[6]) {
         winner = fields[2];
-        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1.3)';
+        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1.4)';
     }
+    showWinner(winner);
+}
 
+
+function showWinner(winner) {
     if (winner) { // wird ausgeführt, wenn winner vorhanden
-        console.log('GEWONNEN', winner);
         gameOver = true; // stoppt die Funktion fillShape(id), so dass kein weiterspielen möglich ist
         setTimeout(function () {
             document.getElementById('game-over').classList.remove('d-none'); // rendern von Game Over-Grafik mit Zeitverzögerung von 1 Sekunde
             document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
         }, 1000);
     }
-
 }

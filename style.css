@@ -35,13 +35,13 @@ table {
 }
 
 tr {
-  width: 399px;
+  width: 300px;
 }
 
 td {
   position: relative;
-  width: 133px;
-  height: 133px;
+  width: 100px;
+  height: 100px;
   border: 5px solid black;
   cursor: pointer;
 }
@@ -68,10 +68,10 @@ table tr td:last-child {
 
 .shape {
   position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 26px;
-  left: 26px;
+  width: 60px;
+  height: 60px;
+  top: 20px;
+  left: 20px;
 }
 
 .d-none {
@@ -80,7 +80,7 @@ table tr td:last-child {
 
 .horizontal-line {
   height: 10px;
-  width: 300px;
+  width: 220px;
   background-color: rgba(0, 0, 0, 0.5);
   position: relative;
   transform: scaleX(0.0);
@@ -129,4 +129,10 @@ table tr td:last-child {
 
 .restart-btn:hover {
   background-color: #84A1D6;
+}
+
+@media (max-width: 800px) {
+	.player-panel {
+    flex-direction: column;
+  }
 }
