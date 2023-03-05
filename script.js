@@ -62,12 +62,7 @@ function checkForWin() {
     horizontalLines(winner);
     verticalLines(winner);
     diagonalLines(winner);
-    // no Winner
-    if (fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] && fields[7] && fields[8]) {
-        setTimeout(function () {
-            document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
-        }, 1000);
-    }
+    noWinner();
 }
 
 // if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
@@ -138,6 +133,15 @@ function showWinner(winner) {
         gameOver = true; // stoppt die Funktion fillShape(id), so dass kein weiterspielen möglich ist
         setTimeout(function () {
             document.getElementById('game-over').classList.remove('d-none'); // rendern von Game Over-Grafik mit Zeitverzögerung von 1 Sekunde
+            document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
+        }, 1000);
+    }
+}
+
+
+function noWinner() {
+     if (fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] && fields[7] && fields[8]) {
+        setTimeout(function () {
             document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
         }, 1000);
     }
