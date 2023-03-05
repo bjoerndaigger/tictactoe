@@ -62,6 +62,12 @@ function checkForWin() {
     horizontalLines(winner);
     verticalLines(winner);
     diagonalLines(winner);
+    // no Winner
+    if (fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] && fields[7] && fields[8]) {
+        setTimeout(function () {
+            document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
+        }, 1000);
+    }
 }
 
 // if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
