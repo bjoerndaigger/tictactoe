@@ -132,7 +132,6 @@ function noWinner() {
 function restart() {
     gameOver = false; // ausführen von fillShape(id) wieder möglich
     fields = []; // reset von fields
-    currentShape = 'cross';
 
     document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
     document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
