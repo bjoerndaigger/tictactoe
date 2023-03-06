@@ -4,8 +4,10 @@ let currentShape = 'cross';  // Variable, die sagt, mit welchem Image gestartet 
 
 
 function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID, welches Feld geklickt wurde
-    if (!fields[id] && !gameOver) { // Funktion wird nur ausgeführt, wenn erste Bedingung undefined zurückgibt, also noch kein Wert vorhanden ist (verhindert Doppelklick) 
-        // && wenn zweite Bedingung gameOver true ist (Negation Operator), damit nach Gewinnen kein Weiterspielen möglich ist
+    // Funktion wird ausgeführt, wenn erste Bedingung undefined zurückgibt (kein Doppelclick möglich) 
+    // && wenn zweite Bedingung gameOver true ist (Negation Operator), damit nach Gewinnen kein Weiterspielen möglich ist
+    if (!fields[id] && !gameOver) {
+
         if (currentShape == 'cross') { // if-Abfrage, die abwechselnd 'cross' und 'circle' in den Array gibt
             currentShape = 'circle';
             document.getElementById('player-1').classList.remove('player-inactive'); // entfernt Transparenz von Player 1 und
@@ -18,7 +20,7 @@ function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID,
 
         fields[id] = currentShape; // pusht aktuelle Indexstelle (currentShape) mit 'cross' oder 'circle' in den Array
         console.log(fields);
-        draw();
+        showShapes();
         checkForWin();
     }
 }
@@ -32,8 +34,9 @@ function restart() {
     document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
     document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
 
-    for (let i = 1; i < 9; i++) { // geht von 1 bis 7 durch alle Linien und macht Winlines wieder unsichtbar
+    for (let i = 1; i < 9; i++) { // geht von 1 bis 7 durch alle Linien und macht winlines wieder unsichtbar
         document.getElementById('line-' + i).style.transform = 'scaleX(0)';
+        document.getElementById('line-' + i).style.transition = 'transform 225ms ease-in-out';
     }
 
     for (let i = 0; i < 9; i++) { // geht von 0 bis 8 durch alle Kästchen und fügt Klasse d-none zu cross und circle hinzu
@@ -43,7 +46,7 @@ function restart() {
 }
 
 
-function draw() {  //entfernen von entsprechendem display-none im CSS beim click
+function showShapes() {  //entfernen von entsprechendem display-none im CSS beim click
     for (let i = 0; i < fields.length; i++) {
         if (fields[i] == 'circle') {
             document.getElementById('circle-' + i).classList.remove('d-none');
@@ -140,7 +143,7 @@ function showWinner(winner) {
 
 
 function noWinner() {
-     if (fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] && fields[7] && fields[8]) {
+    if (fields[0] && fields[1] && fields[2] && fields[3] && fields[4] && fields[5] && fields[6] && fields[7] && fields[8]) {
         setTimeout(function () {
             document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
         }, 1000);
