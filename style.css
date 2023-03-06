@@ -95,7 +95,10 @@ table tr td:last-child {
   position: absolute;
   left: 0;
   right: 0;
-  width: 100%;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  width: 600px;
   z-index: 2;
   animation: zoomIn 225ms ease-in-out;
 }
@@ -130,6 +133,12 @@ table tr td:last-child {
 
 .restart-btn:hover {
   background-color: #84A1D6;
+}
+
+@media (max-width: 600px) {
+  .game-over {
+    width: 100%;
+  }
 }
 
 @media (max-width: 400px) {
