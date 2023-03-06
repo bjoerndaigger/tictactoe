@@ -3,7 +3,7 @@ let gameOver = false;
 let currentShape = 'cross';  // Variable, die sagt, mit welchem Image gestartet werden soll
 
 
-function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID, welches Feld geklickt wurde
+function fillShape(id) { 
     // Funktion wird ausgeführt, wenn erste Bedingung undefined zurückgibt (kein Doppelclick möglich) 
     // && wenn zweite Bedingung gameOver true ist (Negation Operator), damit nach Gewinnen kein Weiterspielen möglich ist
     if (!fields[id] && !gameOver) {
@@ -24,27 +24,6 @@ function fillShape(id) { // Aufruf durch onclick und Übergabe von Parameter ID,
         checkForWin();
     }
 }
-
-
-function restart() {
-    gameOver = false; // ausführen von fillShape(id) wieder möglich
-    fields = []; // reset von fields
-    currentShape = 'cross';
-
-    document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
-    document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
-
-    for (let i = 1; i < 9; i++) { // geht von 1 bis 7 durch alle Linien und macht winlines wieder unsichtbar
-        document.getElementById('line-' + i).style.transform = 'scaleX(0)';
-        document.getElementById('line-' + i).style.transition = 'transform 225ms ease-in-out';
-    }
-
-    for (let i = 0; i < 9; i++) { // geht von 0 bis 8 durch alle Kästchen und fügt Klasse d-none zu cross und circle hinzu
-        document.getElementById('cross-' + i).classList.add('d-none');
-        document.getElementById('circle-' + i).classList.add('d-none');
-    }
-}
-
 
 function showShapes() {  //entfernen von entsprechendem display-none im CSS beim click
     for (let i = 0; i < fields.length; i++) {
@@ -68,11 +47,10 @@ function checkForWin() {
     noWinner();
 }
 
-// if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
-// außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
-
 function horizontalLines(winner) {
     // First row
+    // if erfragt die verschiedenen Möglichkeiten, ob drei gleiche Werte in einer senk-, waagerechten oder diagonalen sind
+    // außerdem ob Wert vorhanden (zweites &&), sonst wird nächste Zeile nicht ausgeführt
     if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
         winner = fields[0]; // überprüft ob Wert an Index 0, 1 oder 2 vorhanden, ansonsten undefined
         document.getElementById('line-1').style.transform = 'scaleX(1)'; // Animation von durchgezogener Linie bei Gewinn
@@ -148,4 +126,43 @@ function noWinner() {
             document.getElementById('restart-btn').classList.remove('d-none'); // rendern von Restart-Button
         }, 1000);
     }
+}
+
+
+function restart() {
+    gameOver = false; // ausführen von fillShape(id) wieder möglich
+    fields = []; // reset von fields
+    currentShape = 'cross';
+
+    document.getElementById('game-over').classList.add('d-none'); // Game Over Grafik wird unsichtbar
+    document.getElementById('restart-btn').classList.add('d-none'); // Restart-Button wird unsichtbar
+
+    for (let i = 0; i < 9; i++) { // geht von 0 bis 8 durch alle Kästchen und fügt Klasse d-none zu cross und circle hinzu
+        document.getElementById('cross-' + i).classList.add('d-none');
+        document.getElementById('circle-' + i).classList.add('d-none');
+    }
+
+    resetHorizontalLines();
+    resetVerticalLines();
+    resetDiagonalLines();
+}
+
+
+function resetHorizontalLines() {
+    for (let i = 1; i < 4; i++) { // geht von 1 bis 7 durch alle Linien und macht winlines wieder unsichtbar
+        document.getElementById('line-' + i).style.transform = 'scaleX(0.0)';
+    }
+}
+
+
+function resetVerticalLines() {
+    for (let i = 4; i < 7; i++) {
+        document.getElementById('line-' + i).style.transform = 'rotate(90deg) scaleX(0.0)';
+    }
+}
+
+
+function resetDiagonalLines() {
+    document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(0.0)';
+    document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(0.0)';
 }
